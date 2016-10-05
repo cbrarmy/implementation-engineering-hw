@@ -32,7 +32,10 @@ file is 100GB in size and too big to simply open in an editor:
     <br/>lines=3370 (See quesionTwoTwo.py)
     
     1. Suppose you wanted to load this file into table in a database. How would you accomplish this?
-    <br/>-create a 
+    <br/>-create a table in your database (see createtable.sql)
+    <br/>-create a connection (sqlconnection.py)
+    <br/>-import csv file
+    
     1. Column 0 contains the filename of jpg files. Imagine these files were hosted at: `http://www.yourdomain.com/images/`
     and you wanted to download all of these images to a local folder on your machine. How would you accomplish this?
 
