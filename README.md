@@ -14,9 +14,12 @@ _Do not submit your solution via pull request to this repository!_
     <br/>-pull using python. (See questionOneOne.py)
     1. This file is full of a lot of gibberish. Are there more instances of the character a or g?<br/>
     How many of each? How did you determine this?
+    <br/>Using notepad++ I used Find-->count feature
+    <br/>a=2537,g=630
     1. Google has sensibly chosen size over readability for this file. Suppose that for your local copy,
     however, you wanted to rename the variables a, b, c, and g to apple, banana, carrot, and grapefruit.
     How would you do this?
+    
 
 1. For the following questions use the `./src/main/resources/aSkDddKs.csv` file found in this repo and assume the
 file is 100GB in size and too big to simply open in an editor:
