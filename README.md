@@ -11,7 +11,7 @@ _Do not submit your solution via pull request to this repository!_
 1. Download `http://www.google-analytics.com/ga.js` to a file named `ga_local.js` on your machine.
 
     1. How did you accomplish this?
-    -pull using python. (See questionOneOne.py)
+    -pull using python. <br/>(See questionOneOne.py)
     1. This file is full of a lot of gibberish. Are there more instances of the character a or g?<br/>
     How many of each? How did you determine this?
     1. Google has sensibly chosen size over readability for this file. Suppose that for your local copy,
