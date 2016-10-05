@@ -50,6 +50,14 @@ Your regular expression should handle, at a minimum, the following formats:
     ```
 
     1. Adapt your regular expression to support the area code being optional.
+    <br/>import re
+
+    <br/>phoneNumber='650-555-1212'
+
+    <br/>phonePattern=re.compile(r'(\d{3})\D*(\d{3})\D*(\d{4})$')
+    <br/>formattedNumber=phonePattern.search(phoneNumber).groups()
+    <br/>print(formattedNumber)
+    <br/>(see phoneNumberExpression.py)
 
 1. Write standard SQL syntax that will create a `users` table, including indexes, with the following structure:
 
