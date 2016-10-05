@@ -1,0 +1,10 @@
+CREATE TABLE [dbo].[users](
+	[id] [int] NOT NULL,
+	[username] [varchar](50) NOT NULL,
+	[email] [varchar](50) NULL,
+	[signup_date] [date] NULL,
+	PRIMARY KEY (id)
+	)
+	go
+ CREATE INDEX IX_users1
+ON users (username)
