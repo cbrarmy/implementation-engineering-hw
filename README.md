@@ -20,6 +20,7 @@ _Do not submit your solution via pull request to this repository!_
     1. Google has sensibly chosen size over readability for this file. Suppose that for your local copy,
     however, you wanted to rename the variables a, b, c, and g to apple, banana, carrot, and grapefruit.
     How would you do this?
+    <br/>-using notepad++ replace all feature 'var a=' to 'var apples=', 'var b=' to 'var banana=', <br\>'var c=' to 'var carrot=', 'var g=' to 'var grapefruit='
     
 
 1. For the following questions use the `./src/main/resources/aSkDddKs.csv` file found in this repo and assume the
@@ -31,6 +32,7 @@ file is 100GB in size and too big to simply open in an editor:
     <br/>lines=3370 (See quesionTwoTwo.py)
     
     1. Suppose you wanted to load this file into table in a database. How would you accomplish this?
+    <br/>-create a 
     1. Column 0 contains the filename of jpg files. Imagine these files were hosted at: `http://www.yourdomain.com/images/`
     and you wanted to download all of these images to a local folder on your machine. How would you accomplish this?
 
