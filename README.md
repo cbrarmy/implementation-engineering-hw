@@ -26,7 +26,10 @@ _Do not submit your solution via pull request to this repository!_
 file is 100GB in size and too big to simply open in an editor:
 
     1. Does the file include a header row? How did you determine this?
+    <br/>No header row. Looking at the First row in raw form, it doesnt name columns.
     1. How many lines, words, and characters are in the file? How did you determine this?
+    <br/>lines=3370 (See quesionTwoTwo.py)
+    
     1. Suppose you wanted to load this file into table in a database. How would you accomplish this?
     1. Column 0 contains the filename of jpg files. Imagine these files were hosted at: `http://www.yourdomain.com/images/`
     and you wanted to download all of these images to a local folder on your machine. How would you accomplish this?
