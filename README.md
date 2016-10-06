@@ -82,8 +82,11 @@ Your regular expression should handle, at a minimum, the following formats:
     1. Imagine your schema includes a second table `user_actions` that contains a `user_id` column that is a foreign key
     to the `users.id` column. Write SQL that will return the usernames and emails for all users in the `users` tables that
     have no rows in the `user_actions` table.
+    <br\>do a left join on users.id=user_action.user_id where user_action.user_id is null
+    <br\>(see  leftJoinuser_action.sql)
     1. Imagine your "corrupted" table has magically been cleaned such that no `username` exists on multiple rows in the table.
     Write SQL that will modify the structure of the table that will enforce that the multiple `username` scenario cannot reoccur.
+    <br\>ALTER TABLE users ADD UNIQUE (username) (see addContraint.sql)
 
 1. What utility would you use to schedule a job under UNIX?
 
