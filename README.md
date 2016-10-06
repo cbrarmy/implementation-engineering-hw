@@ -74,6 +74,8 @@ Your regular expression should handle, at a minimum, the following formats:
     multiple instances in the table.
     1. Write SQL that will generate a list of unique `email` addresses for all the usernames returned in the previous question
        (part i)
+       <br/>find duplicates and group by user name, overpartition rows based on username and sort by signup date, select first row
+       <br\>(see multipleUsernames.sql)
     1. Imagine your schema includes a second table `user_actions` that contains a `user_id` column that is a foreign key
     to the `users.id` column. Write SQL that will return the usernames and emails for all users in the `users` tables that
     have no rows in the `user_actions` table.
