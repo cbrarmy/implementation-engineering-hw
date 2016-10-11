@@ -1,0 +1,136 @@
+Implementation Engineering Homework
+
+Instructions
+
+Please clone this repository and deliver your solutions in an archive format of your choice (e.g. zip or tarball), including the entire contents of this repo along with your answers.
+
+Do not submit your solution via pull request to this repository!
+
+Questions
+
+1.Download http://www.google-analytics.com/ga.js to a file named ga_local.js on your machine.
+
+	i.How did you accomplish this?
+
+		-I pulled using python
+
+		import urllib.request
+		testfile=urllib.request.urlretrieve('http://www.google-analytics.com/ga.js','ga_local.js')
+
+
+	ii.This file is full of a lot of gibberish. Are there more instances of the character a or g?
+	How many of each? How did you determine this?
+
+		-Using notepad++ I used Find-->count feature 
+		-a=2537 
+		-g=630
+
+	iii.Google has sensibly chosen size over readability for this file. Suppose that for your local copy, however, you wanted to rename the variables a, b, c, and g to apple, banana, carrot, and grapefruit. How would you do this?
+
+		-using notepad++ replace all feature 'var a=' to 'var apples=', 'var b=' to 'var banana=', 'var c=' to 'var carrot=', 'var g=' to 'var grapefruit='
+
+2.For the following questions use the ./src/main/resources/aSkDddKs.csv file found in this repo and assume the file is 100GB in size and too big to simply open in an editor:
+
+	i.Does the file include a header row? How did you determine this?
+		
+		-No header row. Looking at the First row in raw form, it doesnt name columns
+
+	ii.How many lines, words, and characters are in the file? How did you determine this?
+
+		-lines=3370
+		-using python
+		import urllib.request
+		import csv
+		url='https://raw.githubusercontent.com/opower/implementation-engineering-hw/master/src/main/resources/aSkDddKs.csv'
+		page=urllib.request.urlopen(url)
+		csv=csv.reader(page.read().decode('ISO-8859-1').splitlines())
+		row_count=sum(1 for row in csv)
+		print (row_count)
+
+	iii.Suppose you wanted to load this file into table in a database. How would you accomplish this?
+
+		-create a table in your database 
+		CREATE TABLE testTable (Column0 varchar(50),Column1 varchar(50))
+		-create a connection
+		import pypyodbc
+		connection = pypyodbc.connect('Driver={SQL Server};''server=localhost;''database=mytestdb;''uid=****;pwd=****')
+		-import csv file
+		import pypyodbc
+		connection = pypyodbc.connect('Driver={SQL Server};''server=localhost;''database=mytestdb;''uid=****;pwd=****')
+		cursor = connection.cursor() 
+		SQLCommand = ("")
+		cursor.execute(SQLCommand)
+
+	iv.Column 0 contains the filename of jpg files. Imagine these files were hosted at: http://www.yourdomain.com/images/ and you wanted to download all of these images to a local folder on your machine. How would you accomplish this?
+
+3.Write a regular expression to capture the three components of a standard 10 digit US telephone number. Your regular expression should handle, at a minimum, the following formats:
+
+xxx-xxx-xxxx
+(xxx) xxx-xxxx
+xxx xxx xxxx
+xxx.xxx.xxxx
+
+	i.Adapt your regular expression to support the area code being optional.
+	
+		import re
+		phoneNumber='650-555-1212'
+		phonePattern=re.compile(r'(\d{3})\D*(\d{3})\D*(\d{4})$')
+		formattedNumber=phonePattern.search(phoneNumber).groups()
+		print(formattedNumber)
+
+4.Write standard SQL syntax that will create a users table, including indexes, with the following structure:
+
+id (integer, primary key)
+username (string)
+email (string)
+signup_date (date)
+
+	i.Imagine that this table does not enforce uniqueness on username. An application that uses this table has allowed the table to be "corrupted" by allowing multiple users to sign up with the same username. Write SQL that would generate a list of the usernames and the most recent signup_date for that username, for all usernames that have multiple instances in the table.
+		
+		-find duplicates and group by user name, overpartition rows based on username and sort by signup date, select first row 
+		with test_cte (username)
+		as 
+		(select USERname
+		from users
+		group by username
+		having COUNT(username)>1)
+		select tc.username,signup_date
+		from (select *,row_number() over(partition by username order by signup_date desc)rn from users)t 
+		join test_cte as tc on t.username=tc.username
+		where rn='1'
+		
+	ii.Write SQL that will generate a list of unique email addresses for all the usernames returned in the previous question (part i)
+		
+		-add email column to my select above
+		with test_cte (username)
+		as 
+		(select USERname
+		from users
+		group by username
+		having COUNT(username)>1)
+		select tc.username,signup_date,email --added email
+		from (select *,row_number() over(partition by username order by signup_date desc)rn from users)t 
+		join test_cte as tc on t.username=tc.username
+		where rn='1'
+		
+	iii.Imagine your schema includes a second table user_actions that contains a user_id column that is a foreign key to the users.id column. Write SQL that will return the usernames and emails for all users in the users tables that have no rows in the user_actions table.
+		
+		select u.id,u.username,u.email
+		from users as u left join user_actions as ua on u.id=ua.user_id
+		where ua.user_id is null
+
+	iv.Imagine your "corrupted" table has magically been cleaned such that no username exists on multiple rows in the table. Write SQL that will modify the structure of the table that will enforce that the multiple username scenario cannot reoccur.
+		
+		-ALTER TABLE users ADD UNIQUE (username)
+		ALTER TABLE users
+		ADD UNIQUE (username)
+		
+5.What utility would you use to schedule a job under UNIX?
+	-CRONTAB
+
+	i.What syntax would you use to schedule a script run.sh to run at 6:15PM every Tuesday during March, June, September and December.
+		
+		15 18 * 3,6,9,12 2/path/scripts/run.sh
+	ii.Adapt this so that it runs only every other Tuesday during those same months.
+
+		
